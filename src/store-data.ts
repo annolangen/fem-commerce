@@ -29,6 +29,7 @@ export interface Product {
   description: string;
   price: number;
   discount: number;
+  tags: string[];
   readonly finalPrice: number;
   images: Image[];
 }
@@ -42,6 +43,7 @@ function addProduct({
   description,
   price,
   discount,
+  tags,
   images,
 }: Omit<Product, "id" | "finalPrice">) {
   const id = products.size + 1;
@@ -53,6 +55,7 @@ function addProduct({
     description,
     price,
     discount,
+    tags,
     get finalPrice() {
       return price * (1 - discount);
     },
@@ -68,6 +71,7 @@ addProduct({
     "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
   price: 250.0,
   discount: 0.5,
+  tags: ["men", "women"],
   images: makeImagesWithThumbnail(4, "sneaker"),
 });
 addProduct({
@@ -78,6 +82,7 @@ addProduct({
     "A glimpse into the future of autonomous and electric driving. Sleek, fast, and intelligent.",
   price: 180000.0,
   discount: 0.1,
+  tags: ["men"],
   images: makeImagesWithTrivialThumbnail(4, "car"),
 });
 addProduct({
@@ -88,6 +93,7 @@ addProduct({
     "The perfect companion for your daily commute or weekend adventures. Stylish and functional.",
   price: 120.0,
   discount: 0.0,
+  tags: ["women"],
   images: makeImagesWithTrivialThumbnail(4, "bag"),
 });
 addProduct({
@@ -98,5 +104,6 @@ addProduct({
     "Carry all your tech in one place. Padded compartments for laptops, tablets, and more.",
   price: 95.0,
   discount: 0.15,
+  tags: ["men", "women"],
   images: makeImagesWithTrivialThumbnail(4, "backpack"),
 });
